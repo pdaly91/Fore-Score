@@ -10,7 +10,7 @@ export default function Home({ navigation }) {
       <View style={styles.button}>
         <Button
           title="Play A Game"
-          onPress={() => navigation.navigate('Scorecard')}
+          onPress={() => navigation.navigate('GameScreen')}
           color='#FFF'
         />
       </View>

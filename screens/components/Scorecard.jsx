@@ -3,7 +3,7 @@ import React from 'react';
 
 const { useState } = React;
 
-export default function Scorecard() {
+export default function Scorecard({course}) {
   const holesFront = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const holesBack = [10, 11, 12, 13, 14, 15, 16, 17, 18];
   const currentHole = useState(0);
@@ -26,7 +26,7 @@ export default function Scorecard() {
 
   return (
     <View style={styles.container}>
-      <Text>Scorecard</Text>
+      <Text>{`${course} Scorecard`}</Text>
       <View style={styles.table}>
         <View style={styles.holesHeader}>
           <Text style={styles.tableCell}>Hole:</Text>

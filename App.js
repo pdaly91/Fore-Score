@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './screens/Home.jsx';
-import Scorecard from './screens/Scorecard.jsx';
+import GameScreen from './screens/GameScreen.jsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,10 +26,10 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Scorecard"
-          component={Scorecard}
+          name="GameScreen"
+          component={GameScreen}
           options={{
-            title: "Scorecard",
+            title: "New Game",
             headerStyle: {
               backgroundColor: '#588157',
             },
