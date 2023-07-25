@@ -51,7 +51,7 @@ export default function Scorecard({course, yards, pars, scores}) {
 
   return (
     <View style={styles.container}>
-      <Text>{`${course} Scorecard`}</Text>
+      <Text>{`${course} - Scorecard`}</Text>
       <View style={styles.table}>
         <View style={styles.holesHeader}>
           <Text style={styles.tableCell}>Hole:</Text>
@@ -122,12 +122,13 @@ export default function Scorecard({course, yards, pars, scores}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingVertical: 16,
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
   table: {
-    marginVertical: 2
+    marginVertical: 4
   },
   holesHeader: {
     flexDirection: 'row',
@@ -161,8 +162,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   tableCell: {
-    minWidth: 32,
-    maxWidth: 32,
+    minWidth: 34,
+    maxWidth: 34,
+    minHeight: 15,
+    maxHeight: 15,
     marginVertical: 4,
     textAlign: 'center',
     fontSize: 10,

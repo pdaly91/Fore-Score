@@ -7,8 +7,8 @@ import GameInput from './components/GameInput.jsx';
 const { useState } = React;
 
 export default function GameScreen() {
-  const [course, setCourse] = useState('Test'); // set back to empty
-  const [ready, setReady] = useState(true); // set back to false
+  const [course, setCourse] = useState(''); // set back to empty
+  const [ready, setReady] = useState(false); // set back to false
   const [currentHole, setCurrentHole] = useState(0);
   const [yards, setYards] = useState([]);
   const [pars, setPars] = useState([]);
@@ -20,8 +20,15 @@ export default function GameScreen() {
     }
   };
 
-  const handleUpdateHole = (hole, yard, par, score) => {
-    setCurrentHole(currentHole + 1);
+  const handleUpdateHole = (start, yard, par, score) => {
+    if (start) {
+      setCurrentHole(1);
+    } else {
+      setYards([...yards, yard]);
+      setPars([...pars, par]);
+      setScores([...scores, score]);
+      setCurrentHole(currentHole + 1);
+    }
   };
 
   if (!ready) {
