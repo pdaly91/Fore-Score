@@ -6,11 +6,11 @@ const { useState } = React;
 export default function Scorecard() {
   const holesFront = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const holesBack = [10, 11, 12, 13, 14, 15, 16, 17, 18];
-  const yardsFront = [150, 300, 450, 150, 300, 450, 150, 300, 450];
-  const yardsBack = [150, 300, 450, 150, 300, 450, 150, 300, 450];
-  const parFront = [3, 4, 5, 3, 4, 5, 3, 4, 5];
-  const parBack = [3, 4, 5, 3, 4, 5, 3, 4, 5];
-  const scoreFront = [4, null, null, null, null, null, null, null, null];
+  const yardsFront = [null, null, null, null, null, null, null, null, null];
+  const yardsBack = [null, null, null, null, null, null, null, null, null];
+  const parFront = [null, null, null, null, null, null, null, null, null];
+  const parBack = [null, null, null, null, null, null, null, null, null];
+  const scoreFront = [null, null, null, null, null, null, null, null, null];
   const scoreBack = [null, null, null, null, null, null, null, null, null];
 
   return (
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     alignContent: 'center',
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#a3b18a',
     borderWidth: 1
   },
   yardsHeader: {
     flexDirection: 'row',
     justifyContent:'space-between',
     alignContent: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: '#dad7cd',
     borderLeftWidth: 1,
     borderRightWidth: 1
   },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     alignContent: 'center',
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#e5e5e5',
     borderWidth: 1
   },
   scoreRow: {
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   tableCell: {
-    minWidth: 34,
-    maxWidth: 34,
+    minWidth: 32,
+    maxWidth: 32,
     marginVertical: 4,
     textAlign: 'center',
-    fontSize: 11,
+    fontSize: 10,
   }
 });

@@ -1,6 +1,7 @@
-import { Text, View, Button, SafeAreaView } from 'react-native';
+import { Text, View, StyleSheet, Button, SafeAreaView } from 'react-native';
 import React from 'react';
 
+import Header from './components/Header.jsx';
 import Scorecard from './Scorecard.jsx';
 
 const { useState } = React;
@@ -8,10 +9,17 @@ const { useState } = React;
 export default function Home() {
 
   return (
-    <SafeAreaView>
-      <View>
+    // <SafeAreaView>
+      <View style={styles.container}>
+        <Header />
         <Scorecard />
       </View>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+});
