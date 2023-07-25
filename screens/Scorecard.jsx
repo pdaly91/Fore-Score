@@ -4,14 +4,25 @@ import React from 'react';
 const { useState } = React;
 
 export default function Scorecard() {
+  const currentHole = 0;
   const holesFront = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const holesBack = [10, 11, 12, 13, 14, 15, 16, 17, 18];
-  const yardsFront = [null, null, null, null, null, null, null, null, null];
-  const yardsBack = [null, null, null, null, null, null, null, null, null];
-  const parFront = [null, null, null, null, null, null, null, null, null];
-  const parBack = [null, null, null, null, null, null, null, null, null];
-  const scoreFront = [null, null, null, null, null, null, null, null, null];
-  const scoreBack = [null, null, null, null, null, null, null, null, null];
+  const [yardsFront, setYardsFront] = useState([null, null, null, null, null, null, null, null, null]);
+  const [yardsBack, setYardsBack] = useState([null, null, null, null, null, null, null, null, null]);
+  const [parFront, setParFront] = useState([null, null, null, null, null, null, null, null, null]);
+  const [parBack, setParBack] = useState([null, null, null, null, null, null, null, null, null]);
+  const [scoreFront, setScoreFront] = useState([null, null, null, null, null, null, null, null, null]);
+  const [scoreBack, setScoreBack] = useState([null, null, null, null, null, null, null, null, null]);
+
+  const getSum = (arr) => {
+    let sum = 0;
+    for (let each of arr) {
+      if (each) {
+        sum += each;
+      }
+    }
+    return sum;
+  };
 
   return (
     <View style={styles.container}>
@@ -29,21 +40,21 @@ export default function Scorecard() {
           {yardsFront.map((yards) => {
             return <Text style={styles.tableCell}>{yards}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(yardsFront)}</Text>
         </View>
         <View style={styles.parHeader}>
           <Text style={styles.tableCell}>Par:</Text>
           {parFront.map((par) => {
             return <Text style={styles.tableCell}>{par}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(parFront)}</Text>
         </View>
         <View style={styles.scoreRow}>
           <Text style={styles.tableCell}>Score:</Text>
           {scoreFront.map((score) => {
             return <Text style={styles.tableCell}>{score === null ? '' : score}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(scoreFront)}</Text>
         </View>
       </View>
       <View style={styles.table}>
@@ -59,22 +70,25 @@ export default function Scorecard() {
           {yardsBack.map((yards) => {
             return <Text style={styles.tableCell}>{yards}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(yardsBack)}</Text>
         </View>
         <View style={styles.parHeader}>
           <Text style={styles.tableCell}>Par:</Text>
           {parBack.map((par) => {
             return <Text style={styles.tableCell}>{par}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(parBack)}</Text>
         </View>
         <View style={styles.scoreRow}>
           <Text style={styles.tableCell}>Score:</Text>
           {scoreBack.map((score) => {
             return <Text style={styles.tableCell}>{score === null ? '' : score}</Text>
           })}
-          <Text style={styles.tableCell}>Total</Text>
+          <Text style={styles.tableCell}>{getSum(scoreBack)}</Text>
         </View>
+      </View>
+      <View style={styles.total}>
+        <Text>{`Total: ${getSum(scoreFront) + getSum(scoreBack)} / ${getSum(parFront) + getSum(parBack)}`}</Text>
       </View>
     </View>
   );
@@ -127,5 +141,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     textAlign: 'center',
     fontSize: 10,
+  },
+  total: {
+    alignSelf: 'flex-end',
+    marginRight: 25,
   }
 });
