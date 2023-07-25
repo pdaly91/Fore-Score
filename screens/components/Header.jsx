@@ -17,14 +17,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#588157',
     justifyContent: 'center',
-    maxHeight: 95,
+    maxHeight: 90,
   },
   headerText: {
-    marginLeft: 15,
+    textAlign: 'center',
     marginTop: 50,
     color: '#DAD7CD',
-    fontSize: 32,
-    fontStyle: 'italic',
-    textDecorationLine: 'underline'
+    fontSize: 24,
   }
 });

@@ -1,27 +1,49 @@
 import { Text, View, StyleSheet, Button, SafeAreaView } from 'react-native';
 import React from 'react';
 
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import Scorecard from './Scorecard.jsx';
-
 const { useState } = React;
 
-export default function Home() {
+export default function Home({ navigation }) {
 
   return (
-    // <SafeAreaView>
-      <View style={styles.container}>
-        <Header />
-        <Scorecard />
-        <Footer />
+    <View style={styles.container}>
+      <View style={styles.button}>
+        <Button
+          title="Play A Game"
+          onPress={() => navigation.navigate('Scorecard')}
+          color='#FFF'
+        />
       </View>
-    // </SafeAreaView>
+      <View style={styles.button}>
+        <Button
+          title="View History"
+          // onPress={() => navigation.navigate('Scorecard')}
+          color='#FFF'
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          title="View Bag"
+          // onPress={() => navigation.navigate('Scorecard')}
+          color='#FFF'
+        />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  button: {
+    margin: 5,
+    borderWidth: 1,
+    maxWidth: 150,
+    minWidth: 150,
+    backgroundColor: '#588157',
+    borderColor: '#344E41'
+  }
 });

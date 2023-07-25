@@ -3,16 +3,40 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Home from './screens/Home.jsx';
+import HomeScreen from './screens/Home.jsx';
+import Scorecard from './screens/Scorecard.jsx';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Home />
-      </View>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: "Fore Score",
+            headerStyle: {
+              backgroundColor: '#588157',
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+        <Stack.Screen
+          name="Scorecard"
+          component={Scorecard}
+          options={{
+            title: "Scorecard",
+            headerStyle: {
+              backgroundColor: '#588157',
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
 
   );

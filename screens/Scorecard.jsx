@@ -4,9 +4,9 @@ import React from 'react';
 const { useState } = React;
 
 export default function Scorecard() {
-  const currentHole = 0;
   const holesFront = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const holesBack = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+  const currentHole = useState(0);
   const [yardsFront, setYardsFront] = useState([null, null, null, null, null, null, null, null, null]);
   const [yardsBack, setYardsBack] = useState([null, null, null, null, null, null, null, null, null]);
   const [parFront, setParFront] = useState([null, null, null, null, null, null, null, null, null]);
