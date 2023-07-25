@@ -1,9 +1,17 @@
-import { Text, View } from 'react-native';
+import { Text, View, Button, SafeAreaView } from 'react-native';
+import React from 'react';
+
+import Scorecard from './Scorecard.jsx';
+
+const { useState } = React;
 
 export default function Home() {
+
   return (
-    <View>
-      <Text>Home Page</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Scorecard />
+      </View>
+    </SafeAreaView>
   );
 };
