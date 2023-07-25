@@ -1,18 +1,17 @@
 import { Text, View, Button, StyleSheet } from 'react-native';
 import React from 'react';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
-export default function Scorecard({course}) {
+export default function Scorecard({course, yards, pars, scores}) {
   const holesFront = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const holesBack = [10, 11, 12, 13, 14, 15, 16, 17, 18];
-  const currentHole = useState(0);
-  const [yardsFront, setYardsFront] = useState([null, null, null, null, null, null, null, null, null]);
-  const [yardsBack, setYardsBack] = useState([null, null, null, null, null, null, null, null, null]);
-  const [parFront, setParFront] = useState([null, null, null, null, null, null, null, null, null]);
-  const [parBack, setParBack] = useState([null, null, null, null, null, null, null, null, null]);
-  const [scoreFront, setScoreFront] = useState([null, null, null, null, null, null, null, null, null]);
-  const [scoreBack, setScoreBack] = useState([null, null, null, null, null, null, null, null, null]);
+  const [yardsFront, setYardsFront] = useState([]);
+  const [yardsBack, setYardsBack] = useState([]);
+  const [parFront, setParFront] = useState([]);
+  const [parBack, setParBack] = useState([]);
+  const [scoreFront, setScoreFront] = useState([]);
+  const [scoreBack, setScoreBack] = useState([]);
 
   const getSum = (arr) => {
     let sum = 0;
@@ -23,6 +22,32 @@ export default function Scorecard({course}) {
     }
     return sum;
   };
+
+  useEffect(() => {
+    let frntYds = [];
+    let bckYds = [];
+    let frntPrs = [];
+    let bckPrs = [];
+    let frntScr = [];
+    let bckScr = [];
+    for (let i = 0; i < 18; i++) {
+      if (i < 9) {
+        yards[i] ? frntYds.push(yards[i]) : frntYds.push(null);
+        pars[i] ? frntPrs.push(pars[i]) : frntPrs.push(null);
+        scores[i] ? frntScr.push(scores[i]) : frntScr.push(null);
+      } else {
+        yards[i] ? bckYds.push(yards[i]) : bckYds.push(null);
+        pars[i] ? bckPrs.push(pars[i]) : bckPrs.push(null);
+        scores[i] ? bckScr.push(scores[i]) : bckScr.push(null);
+      }
+    }
+    setYardsFront(frntYds);
+    setYardsBack(bckYds);
+    setParFront(frntPrs);
+    setParBack(bckPrs);
+    setScoreFront(frntScr);
+    setScoreBack(bckScr);
+  }, [yards]);
 
   return (
     <View style={styles.container}>

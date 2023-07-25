@@ -2,18 +2,27 @@ import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
 import React from 'react';
 
 import Scorecard from './components/Scorecard.jsx';
+import GameInput from './components/GameInput.jsx';
 
 const { useState } = React;
 
 export default function GameScreen() {
-  const [course, setCourse] = useState('');
-  const [ready, setReady] = useState(false);
+  const [course, setCourse] = useState('Test'); // set back to empty
+  const [ready, setReady] = useState(true); // set back to false
+  const [currentHole, setCurrentHole] = useState(0);
+  const [yards, setYards] = useState([]);
+  const [pars, setPars] = useState([]);
+  const [scores, setScores] = useState([]);
 
   const handleSubmitCourse = () => {
     if (course.length > 0) {
       setReady(true);
     }
-  }
+  };
+
+  const handleUpdateHole = (hole, yard, par, score) => {
+    setCurrentHole(currentHole + 1);
+  };
 
   if (!ready) {
     return (
@@ -33,8 +42,17 @@ export default function GameScreen() {
     )
   } else {
     return (
-      <View style={styles.scorecard}>
-        <Scorecard course={course} />
+      <View style={styles.container}>
+        <Scorecard
+          course={course}
+          yards={yards}
+          pars={pars}
+          scores={scores}
+        />
+        <GameInput
+          currentHole={currentHole}
+          handleUpdateHole={handleUpdateHole}
+        />
       </View>
     );
   }
@@ -46,10 +64,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 50
   },
-  scorecard: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    // alignItems: 'center'
+    justifyContent: 'flex-start',
   },
   input: {
     height: 40,
