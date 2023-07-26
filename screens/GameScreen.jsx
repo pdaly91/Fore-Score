@@ -35,7 +35,7 @@ export default function GameScreen({ navigation }) {
   const handleEndGame = async () => {
     try {
       let body = {course, yards, pars, scores};
-      let res = await axios.post("http://localhost:3000/forescore/games", body);
+      let res = await axios.post('http://localhost:3000/forescore/games', body);
       if (res.status === 201) {
         navigation.navigate('Home');
       }

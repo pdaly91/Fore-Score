@@ -1,5 +1,6 @@
 import { Text, View, Button, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
+import { getSum, getOverUnder } from '../util/helpers.js';
 
 const { useState, useEffect } = React;
 
@@ -12,16 +13,6 @@ export default function Scorecard({course, yards, pars, scores}) {
   const [parBack, setParBack] = useState([]);
   const [scoreFront, setScoreFront] = useState([]);
   const [scoreBack, setScoreBack] = useState([]);
-
-  const getSum = (arr) => {
-    let sum = 0;
-    for (let each of arr) {
-      if (each) {
-        sum += each;
-      }
-    }
-    return sum;
-  };
 
   useEffect(() => {
     let frntYds = [];
@@ -113,7 +104,8 @@ export default function Scorecard({course, yards, pars, scores}) {
         </View>
       </View>
       <View style={styles.total}>
-        <Text>{`Total: ${getSum(scoreFront) + getSum(scoreBack)} / ${getSum(parFront) + getSum(parBack)}`}</Text>
+        <Text>{`Total: ${getSum(scores)} / ${getSum(pars)}`}</Text>
+        <Text style={{textAlign: "right"}}>{getOverUnder(scores, pars)}</Text>
       </View>
     </View>
   );
@@ -123,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     paddingVertical: 16,
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
