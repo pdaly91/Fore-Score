@@ -1,5 +1,6 @@
 import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
 import React from 'react';
+import axios from 'axios';
 
 import Scorecard from './components/Scorecard.jsx';
 import GameInput from './components/GameInput.jsx';
@@ -31,8 +32,14 @@ export default function GameScreen({ navigation }) {
     }
   };
 
-  const handleEndGame = () => {
-    navigation.navigate('Home')
+  const handleEndGame = async () => {
+    try {
+      let body = {course, yards, pars, scores};
+      await axios.post("http://localhost:3000/forescore/games", body);
+      navigation.navigate('Home');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (!ready) {
