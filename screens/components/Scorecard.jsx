@@ -1,4 +1,4 @@
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Text, View, Button, Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 
 const { useState, useEffect } = React;
@@ -121,7 +121,7 @@ export default function Scorecard({course, yards, pars, scores}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     paddingVertical: 16,
     backgroundColor: '#FFF',
     alignItems: 'center',

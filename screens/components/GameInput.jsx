@@ -92,7 +92,7 @@ export default function GameInput({currentHole, handleUpdateHole}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 3,
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'flex-start',

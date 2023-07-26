@@ -6,7 +6,7 @@ import GameInput from './components/GameInput.jsx';
 
 const { useState } = React;
 
-export default function GameScreen() {
+export default function GameScreen({ navigation }) {
   const [course, setCourse] = useState(''); // set back to empty
   const [ready, setReady] = useState(false); // set back to false
   const [currentHole, setCurrentHole] = useState(0);
@@ -29,6 +29,10 @@ export default function GameScreen() {
       setScores([...scores, score]);
       setCurrentHole(currentHole + 1);
     }
+  };
+
+  const handleEndGame = () => {
+    navigation.navigate('Home')
   };
 
   if (!ready) {
@@ -60,6 +64,13 @@ export default function GameScreen() {
           currentHole={currentHole}
           handleUpdateHole={handleUpdateHole}
         />
+        <View style={styles.button}>
+          <Button
+            title="End Game"
+            color="#FFF"
+            onPress={handleEndGame}
+          />
+        </View>
       </View>
     );
   }
@@ -74,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
+    backgroundColor: '#FFF'
   },
   input: {
     height: 40,
@@ -81,4 +93,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  button: {
+    alignSelf: 'center',
+    flex: 1,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#344E41',
+    maxWidth: 100,
+    maxHeight: 40,
+    marginBottom: 50,
+    backgroundColor: '#FF4A1C'
+  }
 });
