@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from './screens/Home.jsx';
 import GameScreen from './screens/GameScreen.jsx';
+import HistoryScreen from './screens/HistoryScreen.jsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,17 @@ export default function App() {
           component={GameScreen}
           options={{
             title: "New Game",
+            headerStyle: {
+              backgroundColor: '#588157',
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+        <Stack.Screen
+          name="HistoryScreen"
+          component={HistoryScreen}
+          options={{
+            title: "History",
             headerStyle: {
               backgroundColor: '#588157',
             },

@@ -17,7 +17,7 @@ export default function Home({ navigation }) {
       <View style={styles.button}>
         <Button
           title="View History"
-          // onPress={() => navigation.navigate('Scorecard')}
+          onPress={() => navigation.navigate('HistoryScreen')}
           color='#FFF'
         />
       </View>
