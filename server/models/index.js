@@ -44,9 +44,10 @@ module.exports.updateClub = async () => {
   }
 };
 
-module.exports.deleteClub = async () => {
+module.exports.deleteClub = async (id) => {
   try {
-
+    await Club.findByIdAndDelete(id);
+    return;
   } catch (err) {
     throw new Error(err);
   }

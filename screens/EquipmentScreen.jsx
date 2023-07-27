@@ -7,8 +7,10 @@ const { useState, useEffect } = React;
 export default function EquipmentScreen() {
   const [clubs, setClubs] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const [newClubType, setNewClubType] = useState(null);
   const [newClubDistance, setNewClubDistance] = useState(null);
+  const [editClub, setEditClub] = useState(null);
 
   const fetchClubs = async () => {
     let response = await axios.get('http://localhost:3000/forescore/clubs');
@@ -24,6 +26,17 @@ export default function EquipmentScreen() {
     setModalVisible(false);
     setNewClubType(null);
     setNewClubDistance(null);
+    fetchClubs();
+  };
+
+  const handleUpdateClub = async () => {};
+
+  const handleDeleteClub = async () => {
+    await axios.delete(`http://localhost:3000/forescore/clubs/${editClub}`);
+    setEditModalVisible(false);
+    setNewClubType(null);
+    setNewClubDistance(null);
+    setEditClub(null);
     fetchClubs();
   };
 
@@ -55,6 +68,7 @@ export default function EquipmentScreen() {
                 placeholder='Distance (Yards)'
                 onChangeText={setNewClubDistance}
                 value={newClubDistance}
+                keyboardType="number-pad"
               />
             </View>
             <View style={styles.modalRowView}>
@@ -89,14 +103,81 @@ export default function EquipmentScreen() {
         <ScrollView>
           {clubs.map(club => {
             return (
-              <View style={styles.clubRowView} key={club._id}>
-                <Text>{`${club.type}:  `}</Text>
-                <Text>{`${club.distance} Yards    ✎`}</Text>
-              </View>
+              <Pressable
+                key={club._id}
+                onPress={() => {
+                  setNewClubType(club.type);
+                  setNewClubDistance(club.distance);
+                  setEditClub(club._id);
+                  setEditModalVisible(true);
+                }}
+              >
+                <View style={styles.clubRowView}>
+                  <Text>{`${club.type}:  `}</Text>
+                  <Text>{`${club.distance} Yards    ✎`}</Text>
+                </View>
+              </Pressable>
             )
           })}
         </ScrollView>
       </View>
+      <Modal
+        animationType='fade'
+        transparent={true}
+        visible={editModalVisible}
+        onRequestClose={() => {
+          setEditModalVisible(!editModalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalRowView}>
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder='Club Type'
+                onChangeText={setNewClubType}
+                value={newClubType}
+              />
+              <TextInput
+                style={styles.modalTextInput}
+                placeholder='Distance (Yards)'
+                onChangeText={setNewClubDistance}
+                value={newClubDistance ? newClubDistance.toString() : newClubDistance}
+                keyboardType="number-pad"
+              />
+            </View>
+            <View style={styles.modalRowView}>
+              <Pressable
+                style={styles.modalAddButton}
+                onPress={() => {
+
+                }}
+              >
+                <Text>Save</Text>
+              </Pressable>
+              <Pressable
+                style={styles.modalAddButton}
+                onPress={() => {
+                  setEditModalVisible(false);
+                  setNewClubType(null);
+                  setNewClubDistance(null);
+                  setEditClub(null);
+                }}
+              >
+                <Text>Cancel</Text>
+              </Pressable>
+              <Pressable
+                style={styles.modalCancelButton}
+                onPress={() => {
+                  handleDeleteClub();
+                }}
+              >
+                <Text>Delete</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
