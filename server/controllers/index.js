@@ -22,7 +22,8 @@ module.exports.postGames = async (req, res) => {
 
 module.exports.getClubs = async (req, res) => {
   try {
-
+    let result = await model.getClubs();
+    res.send(result);
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -31,7 +32,8 @@ module.exports.getClubs = async (req, res) => {
 
 module.exports.postClubs = async (req, res) => {
   try {
-
+    await model.addClub(req.body);
+    res.status(201).send();
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -40,7 +42,7 @@ module.exports.postClubs = async (req, res) => {
 
 module.exports.putClubs = async (req, res) => {
   try {
-
+    // TODO
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -49,7 +51,7 @@ module.exports.putClubs = async (req, res) => {
 
 module.exports.deleteClubs = async (req, res) => {
   try {
-
+    // TODO
   } catch (err) {
     console.log(err);
     res.status(500).send();

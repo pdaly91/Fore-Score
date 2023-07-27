@@ -12,8 +12,6 @@ const gameSchema = new mongoose.Schema({
 
 const clubSchema = new mongoose.Schema({
   type: String,
-  brand: String,
-  name: String,
   distance: Number
 });
 

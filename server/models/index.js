@@ -1,19 +1,53 @@
 const { Game, Club} = require('../db');
 
 module.exports.getGames = async () => {
-  let result = await Game.find().sort({date: -1});
-  return result;
+  try {
+    let result = await Game.find().sort({date: -1});
+    return result;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 module.exports.addGame = async (data) => {
-  let newGame = new Game(data);
-  await newGame.save();
+  try {
+    let newGame = new Game(data);
+    await newGame.save();
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
-module.exports.getClubs = async () => {};
+module.exports.getClubs = async () => {
+  try {
+    let result = await Club.find().sort({distance: -1});
+    return result;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
 
-module.exports.addClub = async () => {};
+module.exports.addClub = async (data) => {
+  try {
+    let newClub = new Club(data);
+    await newClub.save();
+  } catch (err) {
+    throw new Error(err);
+  }
+};
 
-module.exports.updateClub = async () => {};
+module.exports.updateClub = async () => {
+  try {
 
-module.exports.deleteClub = async () => {};
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+module.exports.deleteClub = async () => {
+  try {
+
+  } catch (err) {
+    throw new Error(err);
+  }
+};
