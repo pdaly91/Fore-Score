@@ -104,8 +104,8 @@ export default function Scorecard({course, yards, pars, scores}) {
         </View>
       </View>
       <View style={styles.total}>
-        <Text>{`Total: ${getSum(scores)} / ${getSum(pars)}`}</Text>
-        <Text style={{textAlign: "right"}}>{getOverUnder(scores, pars)}</Text>
+        <Text>{`Total: ${getSum(scores)} / ${getSum(pars)}  `}</Text>
+        <Text>{`( ${getOverUnder(scores, pars)} )`}</Text>
       </View>
     </View>
   );
@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     paddingVertical: 16,
-    // backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -163,6 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   total: {
+    flexDirection: 'row',
     alignSelf: 'flex-end',
     marginRight: 25,
   }

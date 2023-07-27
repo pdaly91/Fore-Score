@@ -101,8 +101,7 @@ export default function GameInput({currentHole, handleUpdateHole}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
-    backgroundColor: '#FFF',
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
@@ -132,6 +131,7 @@ const styles = StyleSheet.create({
   button: {
     margin: 5,
     borderWidth: 1,
+    borderRadius: 10,
     maxWidth: 150,
     minWidth: 150,
     backgroundColor: '#588157',

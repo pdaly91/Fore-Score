@@ -1,15 +1,17 @@
-import { Text, View, Button, StyleSheet, TextInput } from 'react-native';
+import { Text, View, Button, StyleSheet, TextInput, Pressable, Modal } from 'react-native';
 import React from 'react';
 import axios from 'axios';
 
 import Scorecard from './components/Scorecard.jsx';
 import GameInput from './components/GameInput.jsx';
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 export default function GameScreen({ navigation }) {
-  const [course, setCourse] = useState(''); // set back to empty
-  const [ready, setReady] = useState(false); // set back to false
+  const [modalVisible, setModalVisible] = useState(false);
+  const [clubs, setClubs] = useState([]);
+  const [course, setCourse] = useState('');
+  const [ready, setReady] = useState(false);
   const [currentHole, setCurrentHole] = useState(0);
   const [yards, setYards] = useState([]);
   const [pars, setPars] = useState([]);
@@ -44,6 +46,15 @@ export default function GameScreen({ navigation }) {
     }
   };
 
+  const fetchClubs = async () => {
+    let response = await axios.get('http://localhost:3000/forescore/clubs');
+    setClubs(response.data);
+  };
+
+  useEffect(() => {
+    fetchClubs();
+  }, []);
+
   if (!ready) {
     return (
       <View style={styles.courseInput}>
@@ -73,13 +84,55 @@ export default function GameScreen({ navigation }) {
           currentHole={currentHole}
           handleUpdateHole={handleUpdateHole}
         />
-        <View style={styles.button}>
-          <Button
-            title="End Game"
-            color="#FFF"
-            onPress={handleEndGame}
-          />
+        <View style={styles.controls}>
+          <View style={styles.clubsButton}>
+            <Button
+              title="View Clubs"
+              color="#FFF"
+              onPress={() => { setModalVisible(true) }}
+            />
+          </View>
+          <View style={styles.endButton}>
+            <Button
+              title="End Game"
+              color="#FFF"
+              onPress={handleEndGame}
+            />
+          </View>
         </View>
+      <Modal
+        animationType='fade'
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalList}>
+              {clubs.map(club => {
+                return (
+                  <View style={styles.clubRowView}>
+                    <Text>{`${club.type}:  `}</Text>
+                    <Text>{`${club.distance} Yards`}</Text>
+                </View>
+                )
+              })}
+            </View>
+            <View style={styles.modalControl}>
+              <Pressable
+                style={styles.modalCancelButton}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
+              >
+                <Text>Close</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
       </View>
     );
   }
@@ -100,17 +153,79 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 12,
     borderWidth: 1,
+    borderRadius: 10,
     padding: 10,
   },
-  button: {
-    alignSelf: 'center',
+  controls: {
     flex: 1,
+    justifyContent: 'space-between'
+  },
+  endButton: {
+    alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 10,
     borderColor: '#344E41',
-    maxWidth: 100,
-    maxHeight: 40,
-    marginBottom: 50,
+    marginBottom: 25,
     backgroundColor: '#FF4A1C'
-  }
+  },
+  clubsButton: {
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: '#344E41',
+    marginTop: 15,
+    minWidth: 120,
+    backgroundColor: '#588157'
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    minWidth: 325,
+    maxWidth: 325,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  clubListView: {
+    marginTop: 20
+  },
+  clubRowView: {
+    flexDirection: 'row',
+    marginVertical: 5,
+    justifyContent: 'space-between',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    backgroundColor: '#DAD7CD'
+  },
+  modalControl: {
+    marginTop: 25
+  },
+  modalCancelButton: {
+    margin: 4,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: '#588157',
+    borderColor: '#344E41'
+  },
 });
