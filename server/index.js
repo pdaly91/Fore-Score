@@ -10,8 +10,12 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.get('/forescore/games', controller.getGames);
-
 app.post('/forescore/games', controller.postGames);
+
+app.get('/forescore/clubs', controller.getClubs);
+app.post('/forescore/clubs', controller.postClubs);
+app.put('/forescore/clubs', controller.putClubs);
+app.delete('/forescore/clubs', controller.deleteClubs);
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);

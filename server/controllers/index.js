@@ -19,3 +19,39 @@ module.exports.postGames = async (req, res) => {
     res.status(500).send();
   }
 };
+
+module.exports.getClubs = async (req, res) => {
+  try {
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+};
+
+module.exports.postClubs = async (req, res) => {
+  try {
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+};
+
+module.exports.putClubs = async (req, res) => {
+  try {
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+};
+
+module.exports.deleteClubs = async (req, res) => {
+  try {
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
+};

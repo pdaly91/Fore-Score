@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DAD7CD',
     borderRadius: 25,
     padding: 10,
+    marginVertical: 5,
     minWidth: 225,
     maxWidth: 225
   },
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 5,
+    marginBottom: 300,
     borderWidth: 1,
     borderRadius: 5,
     maxWidth: 75,

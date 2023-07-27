@@ -35,59 +35,68 @@ export default function GameInput({currentHole, handleUpdateHole}) {
       </View>
     )
   }
+  if (currentHole < 19) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.holeName}>{`Hole ${currentHole}`}</Text>
+        <View style={styles.inputGroup}>
+          <Text style={styles.holeText}>Yards:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setDistance}
+            value={distance}
+            placeholder="Set Distance"
+            keyboardType="number-pad"
+            returnKeyType='done'
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.holeText}>Par:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setPar}
+            value={par}
+            placeholder="Set Par"
+            keyboardType="number-pad"
+            returnKeyType='done'
+          />
+        </View>
+        <Text style={styles.holeStrokes}>{`Strokes: ${strokes}`}</Text>
+        <View style={styles.inputGroup}>
+          <View style={styles.strokeButton}>
+            <Button
+              title="-1"
+              onPress={() => {setStrokes(strokes - 1)}}
+              color='#FFF'
+            />
+          </View>
+          <View style={styles.strokeButton}>
+            <Button
+              title="+1"
+              onPress={() => {setStrokes(strokes + 1)}}
+              color='#FFF'
+            />
+          </View>
+        </View>
+        <View style={styles.inputGroup}>
+          <View style={styles.finishButton}>
+            <Button
+              title="Complete Hole"
+              onPress={handleCompleteHole}
+              color='#FFF'
+            />
+          </View>
+        </View>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.holeName}>{`Hole ${currentHole}`}</Text>
       <View style={styles.inputGroup}>
-        <Text style={styles.holeText}>Yards:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setDistance}
-          value={distance}
-          placeholder="Set Distance"
-          keyboardType="number-pad"
-          returnKeyType='done'
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.holeText}>Par:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setPar}
-          value={par}
-          placeholder="Set Par"
-          keyboardType="number-pad"
-          returnKeyType='done'
-        />
-      </View>
-      <Text style={styles.holeStrokes}>{`Strokes: ${strokes}`}</Text>
-      <View style={styles.inputGroup}>
-        <View style={styles.strokeButton}>
-          <Button
-            title="-1"
-            onPress={() => {setStrokes(strokes - 1)}}
-            color='#FFF'
-          />
-        </View>
-        <View style={styles.strokeButton}>
-          <Button
-            title="+1"
-            onPress={() => {setStrokes(strokes + 1)}}
-            color='#FFF'
-          />
-        </View>
-      </View>
-      <View style={styles.inputGroup}>
-        <View style={styles.finishButton}>
-          <Button
-            title="Complete Hole"
-            onPress={handleCompleteHole}
-            color='#FFF'
-          />
-        </View>
+        <Text>Game Completed!</Text>
       </View>
     </View>
-  );
+  )
 };
 
 const styles = StyleSheet.create({

@@ -10,6 +10,14 @@ const gameSchema = new mongoose.Schema({
   scores: Array
 });
 
-const Game = mongoose.model('Game', gameSchema);
+const clubSchema = new mongoose.Schema({
+  type: String,
+  brand: String,
+  name: String,
+  distance: Number
+});
 
-module.exports = Game;
+const Game = mongoose.model('Game', gameSchema);
+const Club = mongoose.model('Club', clubSchema);
+
+module.exports = {Game, Club};
