@@ -23,8 +23,8 @@ export default function Home({ navigation }) {
       </View>
       <View style={styles.button}>
         <Button
-          title="View Bag"
-          // onPress={() => navigation.navigate('Scorecard')}
+          title="View Clubs"
+          onPress={() => navigation.navigate('EquipmentScreen')}
           color='#FFF'
         />
       </View>
