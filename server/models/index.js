@@ -36,9 +36,10 @@ module.exports.addClub = async (data) => {
   }
 };
 
-module.exports.updateClub = async () => {
+module.exports.updateClub = async (id, data) => {
   try {
-
+    await Club.findByIdAndUpdate(id, data);
+    return;
   } catch (err) {
     throw new Error(err);
   }

@@ -29,7 +29,18 @@ export default function EquipmentScreen() {
     fetchClubs();
   };
 
-  const handleUpdateClub = async () => {};
+  const handleUpdateClub = async () => {
+    let body = {
+      type: newClubType,
+      distance: newClubDistance
+    };
+    await axios.put(`http://localhost:3000/forescore/clubs/${editClub}`, body);
+    setEditModalVisible(false);
+    setNewClubType(null);
+    setNewClubDistance(null);
+    setEditClub(null);
+    fetchClubs();
+  };
 
   const handleDeleteClub = async () => {
     await axios.delete(`http://localhost:3000/forescore/clubs/${editClub}`);
@@ -150,7 +161,7 @@ export default function EquipmentScreen() {
               <Pressable
                 style={styles.modalAddButton}
                 onPress={() => {
-
+                  handleUpdateClub();
                 }}
               >
                 <Text>Save</Text>

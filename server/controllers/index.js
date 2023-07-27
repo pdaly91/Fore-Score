@@ -42,7 +42,8 @@ module.exports.postClubs = async (req, res) => {
 
 module.exports.putClubs = async (req, res) => {
   try {
-    // TODO
+    await model.updateClub(req.params.id, req.body);
+    res.status(202).send();
   } catch (err) {
     console.log(err);
     res.status(500).send();
@@ -52,7 +53,7 @@ module.exports.putClubs = async (req, res) => {
 module.exports.deleteClubs = async (req, res) => {
   try {
     await model.deleteClub(req.params.id);
-    res.status(201).send();
+    res.status(202).send();
   } catch (err) {
     console.log(err);
     res.status(500).send();
