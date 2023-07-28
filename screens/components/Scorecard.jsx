@@ -46,29 +46,29 @@ export default function Scorecard({course, yards, pars, scores}) {
       <View style={styles.table}>
         <View style={styles.holesHeader}>
           <Text style={styles.tableCell}>Hole:</Text>
-          {holesFront.map((hole) => {
-            return <Text style={styles.tableCell}>{hole}</Text>
+          {holesFront.map((hole, index) => {
+            return <Text style={styles.tableCell} key={`holesFront${index}`}>{hole}</Text>
           })}
           <Text style={styles.tableCell}>OUT</Text>
         </View>
         <View style={styles.yardsHeader}>
           <Text style={styles.tableCell}>Yards:</Text>
-          {yardsFront.map((yards) => {
-            return <Text style={styles.tableCell}>{yards}</Text>
+          {yardsFront.map((yards, index) => {
+            return <Text style={styles.tableCell} key={`yardsFront${index}`}>{yards}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(yardsFront)}</Text>
         </View>
         <View style={styles.parHeader}>
           <Text style={styles.tableCell}>Par:</Text>
-          {parFront.map((par) => {
-            return <Text style={styles.tableCell}>{par}</Text>
+          {parFront.map((par, index) => {
+            return <Text style={styles.tableCell} key={`parFront${index}`}>{par}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(parFront)}</Text>
         </View>
         <View style={styles.scoreRow}>
           <Text style={styles.tableCell}>Score:</Text>
-          {scoreFront.map((score) => {
-            return <Text style={styles.tableCell}>{score === null ? '' : score}</Text>
+          {scoreFront.map((score, index) => {
+            return <Text style={styles.tableCell} key={`scoreFront${index}`}>{score === null ? '' : score}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(scoreFront)}</Text>
         </View>
@@ -76,29 +76,29 @@ export default function Scorecard({course, yards, pars, scores}) {
       <View style={styles.table}>
         <View style={styles.holesHeader}>
           <Text style={styles.tableCell}>Hole:</Text>
-          {holesBack.map((hole) => {
-            return <Text style={styles.tableCell}>{hole}</Text>
+          {holesBack.map((hole, index) => {
+            return <Text style={styles.tableCell} key={`holesBack${index}`}>{hole}</Text>
           })}
           <Text style={styles.tableCell}>IN</Text>
         </View>
         <View style={styles.yardsHeader}>
           <Text style={styles.tableCell}>Yards:</Text>
-          {yardsBack.map((yards) => {
-            return <Text style={styles.tableCell}>{yards}</Text>
+          {yardsBack.map((yards, index) => {
+            return <Text style={styles.tableCell} key={`yardsBack${index}`}>{yards}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(yardsBack)}</Text>
         </View>
         <View style={styles.parHeader}>
           <Text style={styles.tableCell}>Par:</Text>
-          {parBack.map((par) => {
-            return <Text style={styles.tableCell}>{par}</Text>
+          {parBack.map((par, index) => {
+            return <Text style={styles.tableCell} key={`parBack${index}`}>{par}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(parBack)}</Text>
         </View>
         <View style={styles.scoreRow}>
           <Text style={styles.tableCell}>Score:</Text>
-          {scoreBack.map((score) => {
-            return <Text style={styles.tableCell}>{score === null ? '' : score}</Text>
+          {scoreBack.map((score, index) => {
+            return <Text style={styles.tableCell} key={`scoreBack${index}`}>{score === null ? '' : score}</Text>
           })}
           <Text style={styles.tableCell}>{getSum(scoreBack)}</Text>
         </View>

@@ -153,7 +153,7 @@ export default function EquipmentScreen() {
                 style={styles.modalTextInput}
                 placeholder='Distance (Yards)'
                 onChangeText={setNewClubDistance}
-                value={newClubDistance ? newClubDistance.toString() : newClubDistance}
+                value={newClubDistance ? newClubDistance.toString() : 0}
                 keyboardType="number-pad"
               />
             </View>
